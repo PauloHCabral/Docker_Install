@@ -1,0 +1,94 @@
+1 - Vetificar se existem atualizações pendentes no Ubuntu:
+
+# sudo apt update && sudo apt upgrade -y
+
+sudo apt update : Atualiza o índice de pacotes, garantindo que o sistema conheça as versões mais recentes dos pacotes disponíveis.
+
+sudo apt upgrade  -y : Atualiza todos os pacotes instalados para as versões mais recentes. O -y confirma automaticamente as atualizações
+https://github.com/PauloHCabral/Docker_Install/tree/main
+
+
+2 - Instalar Dependências Necessárias:
+
+O Docker precisa de algumas ferramentas para funcionar corretamente:
+
+# sudo apt install apt-transport-https ca-certificates curl software-properties-common  -y
+
+apt-transport-https: Permite o uso de pacotes via HTTPS, garantindo que o downloads sejam seguros.
+
+ca-certificates: Garante a verificação da autenticidade dos servidores, essencial para segurança.
+
+curl: ferramenta para baixar arquivos pela linha de comando.
+
+software-properties-common: Permite adicionar repositórios adicionais ao sistema.
+
+
+3 - Adicionar Repositório do Docker
+Agora, adicionaremos o repositório oficial do Docker ao sistema:
+
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /user/share/keyrings/docker-archive-keyring.gpg
+
+curl  -fsSl : Baixa a chave de autenticação do Docker.
+
+gpg --dearmor : Converte a chave em um formato que o sistema Ubuntu possa ler.
+
+-o : Especifica o local onde o arquivo da chave será armazenado. 
+
+
+Depois disso, adicionaremos o repositório propriamente dito:
+# echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+
+Explicação:
+esse comandos adiciona o repositório Docker ao sistema para instalar as versões mais recentes do Docker.
+
+
+4 - Instalar o Docker:
+Agora, é possível instalar o Docker com o comando:
+# susdo apt update
+# sudo apt install docker-ce  -y
+
+Explicação:
+docker-ce: Docker Community Edition, uma versão gratuita e aberta do Docker.
+
+
+5 - Verificar se o Docker foi instalado corretamente:
+# sudo systemctl status docker
+
+Esse comando deve mostrar o Docker como ativo e em execução
+
+
+Para iniciar o Docker
+# sudo systemctl start docker
+
+
+Ativar o docker para iniciar automaticamente no boot do sistema:
+# sudo systemctl enable docker
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
